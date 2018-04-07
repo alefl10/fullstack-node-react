@@ -1,0 +1,46 @@
+{
+  "name": "fullstack-node-react",
+  "version": "1.0.0",
+  "description": "FullStack application based on Node.js, React.js and MongoDB",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node server.js --ignore public/",
+    "dev": "webpack -wd"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alefl10/fullstack-node-react.git"
+  },
+  "keywords": [
+    "Node",
+    "React",
+    "Mongo",
+    "Fullstack"
+  ],
+  "author": "Alejandro Ferrero",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alefl10/fullstack-node-react/issues"
+  },
+  "homepage": "https://github.com/alefl10/fullstack-node-react#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.2",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.10.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "nodemon": "^1.17.3",
+    "webpack": "^4.5.0"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongodb": "^3.0.5",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1"
+  }
+}
