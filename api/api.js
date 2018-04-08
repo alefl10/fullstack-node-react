@@ -1,10 +1,6 @@
 const router = require('express').Router();
+const contests = require('./contests/contestsRoutes');
 
-router.route('/')
-  .get((req, res) => {
-    res.send({
-      data: [],
-    });
-  });
+router.use('/contests', contests);
 
-export default router;
+module.exports = router;
