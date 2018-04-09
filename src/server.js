@@ -1,5 +1,6 @@
 import express from 'express';
 import logger from './util/logger';
+import serverRender from './js/serverRender';
 
 const api = require('../api/api');
 
@@ -9,9 +10,16 @@ require('./middleware/middleware.js')(app);
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-  res.render('index', {
-    content: '...',
-  });
+  serverRender()
+    .then(({ initialData, initialMarkup }) => {
+      res.render('index', {
+        initialMarkup,
+        initialData,
+      });
+    })
+    .catch((err) => {
+      logger.log(err);
+    });
 });
 
 app.use('/api', api);

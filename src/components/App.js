@@ -8,17 +8,10 @@ class App extends React.Component {
     super(props);
     this.state = {
       pageHeader: 'Naming Contest',
-      contests: [],
+      contests: this.props.initialContests,
     };
   }
   componentDidMount() {
-    axios.get('/api/contests')
-      .then((resp) => {
-        this.setState({
-          contests: resp.data.contests,
-        });
-      })
-      .catch(console.error);
   }
   componentWillUnmount() {
     // clean timers, listeners
