@@ -1,7 +1,7 @@
 import React from 'react';
-import axios from 'axios';
+import PropTypes from 'prop-types';
 import Header from './Header';
-import ContestPreview from './ContestPreview';
+import ContestList from './ContestList';
 
 class App extends React.Component {
   constructor(props) {
@@ -20,14 +20,18 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header message={this.state.pageHeader} />
-        <div>
-          {this.state.contests.map(contest =>
-            <ContestPreview key={contest.id} {...contest} />)
-          }
-        </div>
+        <ContestList contests={this.state.contests} />
       </div>
     );
   }
 }
+
+App.propTypes = {
+  initialContests: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    categoryName: PropTypes.string.isRequired,
+    contestName: PropTypes.string.isRequired,
+  }).isRequired).isRequired,
+};
 
 export default App;
