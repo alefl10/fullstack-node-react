@@ -1,9 +1,9 @@
 .ContestPreview {
   margin: 1em;
   border: 1px solid #ccc;
+  cursor: pointer;
 
     .category-name {
-      cursor: pointer;
       border-bottom: 1px solid #ccc;
       padding: 0.25em 0.5em;
       font-weight: bold;
@@ -11,7 +11,6 @@
     }
 
     .contest-name {
-      cursor: pointer;
       padding: 0.5em;
     }
 }
