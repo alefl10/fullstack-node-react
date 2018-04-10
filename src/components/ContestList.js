@@ -2,21 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ContestPreview from './ContestPreview';
 
-
 const ContestList = ({ contests, onContestClick }) => (
   <div>
-    {contests.map(contest =>
-      <ContestPreview key={contest.id} onClick={onContestClick} {...contest} />)
+    {Object.keys(contests).map(contestId =>
+      <ContestPreview key={contestId} onClick={onContestClick} {...contests[contestId]} />)
     }
   </div>
 );
 
 ContestList.propTypes = {
-  contests: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    categoryName: PropTypes.string.isRequired,
-    contestName: PropTypes.string.isRequired,
-  }).isRequired).isRequired,
+  contests: PropTypes.shape({
+    contestId: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      categoryName: PropTypes.string.isRequired,
+      contestName: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
   onContestClick: PropTypes.func.isRequired,
 };
 

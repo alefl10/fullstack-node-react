@@ -4,7 +4,7 @@
   "description": "FullStack application based on Node.js, React.js and MongoDB",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node index.js --ignore public/",
+    "start": "nodemon --exec babel-node index.js --ignore dist/",
     "dev": "webpack -wd"
   },
   "repository": {
