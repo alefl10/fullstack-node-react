@@ -10,7 +10,6 @@ exports.params = (req, res, next, id) => {
   if (contest === undefined || contest === null) {
     res.send(`No contest was found with id:${id}`);
   } else {
-    console.log(contest);
     req.contest = contest;
     next();
   }

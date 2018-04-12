@@ -3,19 +3,38 @@ import { renderToString } from 'react-dom/server';
 import axios from 'axios';
 import config from '../config/config';
 import App from '../components/App';
-import logger from '../util/logger';
 
-const serverRender = () =>
-  axios.get(`${config.serverUrl}/api/contests`)
+const apiUrl = (contestId) => {
+  if (contestId !== undefined) {
+    return `${config.serverUrl}/api/contestData/${contestId}`;
+  }
+  return `${config.serverUrl}/api/contestData`;
+};
+
+const getInitialData = (contestId, apiData) => {
+  if (contestId !== undefined) {
+    return {
+      currentContestId: apiData.id,
+      contests: {
+        [apiData.id]: apiData,
+      },
+    };
+  }
+  return apiData;
+};
+
+const serverRender = contestId =>
+  axios.get(apiUrl(contestId))
     .then((resp) => {
+      const initialData = getInitialData(contestId, resp.data);
       const data = {
-        initialData: resp.data,
-        initialMarkup: renderToString(<App initialData={resp.data} />),
+        initialData,
+        initialMarkup: renderToString(<App initialData={initialData} />),
       };
       return data;
     })
     .catch((err) => {
-      logger.log(err);
+      console.log(err);
     });
 
 export default serverRender;

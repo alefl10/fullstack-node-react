@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const contests = require('./contests/contestsRoutes');
+const contestData = require('./contestData/contestDataRoutes');
 
-router.use('/contests', contests);
+router.use('/contestData', contestData);
 
 module.exports = router;

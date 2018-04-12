@@ -1,7 +1,7 @@
 import express from 'express';
-import logger from './util/logger';
 import serverRender from './js/serverRender';
 
+const contest = require('../api/contest/contestRouter');
 const api = require('../api/api');
 
 const app = express();
@@ -18,18 +18,18 @@ app.get('/', (req, res) => {
       });
     })
     .catch((err) => {
-      logger.log(err);
+      console.log(err);
     });
 });
 
+app.use('/contest', contest);
 app.use('/api', api);
 
 app.use(express.static('dist'));
 
 app.use((err, req, res) => {
-  console.log('An error has occured');
-  logger.log(err.message);
-  res.status(500).json(err);
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
 });
 
 module.exports = app;
