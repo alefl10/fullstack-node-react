@@ -12,10 +12,7 @@ const pushState = (obj, url) => {
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      pageHeader: 'Naming Contest',
-      contests: this.props.initialContests,
-    };
+    this.state = this.props.initialData;
     this.fetchContest = this.fetchContest.bind(this);
   }
 
@@ -34,7 +31,6 @@ class App extends React.Component {
     api.fetchContest(contestId)
       .then((contest) => {
         this.setState({
-          pageHeader: contest.contestName,
           currentContestId: contest.id,
           contests: {
             ...this.state.contests,
@@ -44,9 +40,20 @@ class App extends React.Component {
       });
   }
 
-  currentContest() {
+  pageHeader() {
     if (this.state.currentContestId) {
-      return <Contest {...this.state.contests[this.state.currentContestId]} />;
+      return this.currentContest().contestName;
+    }
+    return 'Naming Contest';
+  }
+
+  currentContest() {
+    return this.state.contests[this.state.currentContestId];
+  }
+
+  currentContent() {
+    if (this.state.currentContestId) {
+      return <Contest {...this.currentContest()} />;
     }
     return <ContestList onContestClick={this.fetchContest} contests={this.state.contests} />;
   }
@@ -54,25 +61,23 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Header message={this.state.pageHeader} />
-        {this.currentContest()}
+        <Header message={this.pageHeader()} />
+        {this.currentContent()}
       </div>
     );
   }
 }
 
-App.defaultProps = {
-  initialContests: {},
-};
-
 App.propTypes = {
-  initialContests: PropTypes.shape({
-    contestId: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      categoryName: PropTypes.string.isRequired,
-      contestName: PropTypes.string.isRequired,
+  initialData: PropTypes.shape({
+    contests: PropTypes.shape({
+      contestId: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        categoryName: PropTypes.string.isRequired,
+        contestName: PropTypes.string.isRequired,
+      }),
     }),
-  }),
+  }).isRequired,
 };
 
 export default App;

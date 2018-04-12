@@ -10,7 +10,7 @@ const serverRender = () =>
     .then((resp) => {
       const data = {
         initialData: resp.data,
-        initialMarkup: renderToString(<App initialContests={resp.data.contests} />),
+        initialMarkup: renderToString(<App initialData={resp.data} />),
       };
       return data;
     })

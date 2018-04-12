@@ -5,6 +5,6 @@ import App from '../components/App';
 import styleScss from '../stylesheets/style.scss';
 
 ReactDOM.hydrate(
-  <App initialContests={window.initialData.contests} />,
+  <App initialData={window.initialData} />,
   document.getElementById('root'),
 );
