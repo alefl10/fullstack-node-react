@@ -3,6 +3,7 @@ module.exports = {
   logging: true,
   seed: true,
   db: {
-    url: 'mongodb://localhost/node-react',
+    url: 'mongodb://localhost',
+    name: 'node-react',
   },
 };
