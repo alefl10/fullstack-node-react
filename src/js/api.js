@@ -6,3 +6,10 @@ exports.fetchContest = contestId =>
     .catch((err) => {
       console.log(err);
     });
+
+exports.fetchContestList = () =>
+  axios.get('/api/contestData')
+    .then(resp => resp.data.contests)
+    .catch((err) => {
+      console.log(err);
+    });
