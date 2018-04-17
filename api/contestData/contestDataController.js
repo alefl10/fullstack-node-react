@@ -33,14 +33,14 @@ exports.getOne = (req, res) => {
 };
 
 exports.get = (req, res, next) => {
-  const contestsObj = {};
+  const contests = {};
   contestData.find({})
-    .then((contests) => {
-      contests.forEach((contest) => {
-        const reducedContest = reduceContest({ contest });
-        contestsObj[contest.id] = reducedContest;
+    .then((foundContests) => {
+      foundContests.forEach((contest) => {
+        const reducedContest = reduceContest(contest);
+        contests[contest.id] = reducedContest;
       });
-      res.send(contestsObj);
+      res.send({ contests });
     })
     .catch((err) => {
       next(err);

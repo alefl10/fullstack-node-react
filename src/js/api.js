@@ -13,3 +13,10 @@ exports.fetchContestList = () =>
     .catch((err) => {
       console.log(err);
     });
+
+exports.fetchNames = nameIds =>
+  axios.get(`/api/names/${nameIds.join(',')}`)
+    .then(resp => resp.data.names)
+    .catch((err) => {
+      console.log(err);
+    });

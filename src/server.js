@@ -33,7 +33,6 @@ app.use('/api', api);
 app.use(express.static('dist'));
 
 app.use((err, req, res) => {
-  console.error(err.stack);
   res.status(500).send('Something broke!');
 });
 
