@@ -20,7 +20,7 @@ const contestSchema = new Schema({
     required: true,
   },
   nameIds: [{
-    type: Number,
+    type: Schema.Types.ObjectId,
   }],
   timestamp: {
     type: Date,

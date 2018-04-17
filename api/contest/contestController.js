@@ -3,10 +3,10 @@ import serverRender from '../../src/js/serverRender';
 const contestData = require('../contestData/contestDataModel');
 
 exports.params = (req, res, next, id) => {
-  contestData.findOne({ id: Number(id) })
+  contestData.findById(id)
     .then((contest) => {
       if (contest === undefined || contest === null) {
-        next(new Error('No contest with that id'));
+        next('No contest with that id');
       } else {
         req.id = id;
         next();

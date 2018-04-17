@@ -7,6 +7,6 @@ module.exports = {
     "func-names": ["error", "never"],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "parser": 'babel-eslint',
-    "arrow-body-style": ["error", "as-needed", { "requireReturnForObjectLiteral": true }],
+    "arrow-body-style": ["error", "as-needed", { "requireReturnForObjectLiteral": true }]
   },
 };

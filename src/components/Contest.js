@@ -60,7 +60,7 @@ Contest.propTypes = {
   description: PropTypes.string.isRequired,
   contestListClick: PropTypes.func.isRequired,
   fetchNames: PropTypes.func.isRequired,
-  nameIds: PropTypes.arrayOf(PropTypes.number).isRequired,
+  nameIds: PropTypes.arrayOf(PropTypes.string).isRequired,
   lookupName: PropTypes.func.isRequired,
 };
 
