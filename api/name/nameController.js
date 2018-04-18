@@ -1,6 +1,7 @@
 import { ObjectID } from 'mongodb';
 
-const namesModel = require('./nameModel');
+const Name = require('./nameModel');
+const Contest = require('../contestData/contestDataModel');
 
 const verifyIds = (ids) => {
   const nameIds = ids.split(',').map(String);
@@ -24,7 +25,7 @@ exports.params = (req, res, next, ids) => {
     } = nameIds;
     let counter = 0;
     nameIds.forEach((nameId) => {
-      namesModel.findById(nameId)
+      Name.findById(nameId)
         .then((name) => {
           if (name === undefined || name === null) {
             next('No name with that id');
@@ -49,4 +50,42 @@ exports.get = (req, res) => {
     names,
   } = req;
   res.send({ names });
+};
+
+exports.post = (req, res, next) => {
+  const {
+    name,
+    contestId,
+  } = req.body;
+  const newName = new Name({ name });
+  newName.save()
+    .then((saved) => {
+      Contest.findById(contestId)
+        .then((contest) => {
+          if (contest === undefined || contest === null) {
+            next('No contest with that id');
+          } else {
+            contest.nameIds.push(saved._id);
+            contest.save()
+              .then((updatedContest) => {
+                res.send({
+                  updatedContest,
+                  newName: {
+                    _id: saved._id,
+                    name: saved.name,
+                  },
+                });
+              })
+              .catch((err) => {
+                next(err);
+              });
+          }
+        })
+        .catch((err) => {
+          next(err);
+        });
+    })
+    .catch((err) => {
+      next(err);
+    });
 };

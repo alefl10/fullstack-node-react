@@ -6,14 +6,10 @@ const {
 } = mongoose;
 
 const nameSchema = new Schema({
-  id: {
-    type: Number,
-    required: true,
-    unique: true,
-  },
   name: {
     type: String,
     required: true,
+    unique: true,
   },
   timestamp: {
     type: Date,

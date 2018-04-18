@@ -20,3 +20,10 @@ exports.fetchNames = nameIds =>
     .catch((err) => {
       console.log(err);
     });
+
+exports.addName = (name, contestId) =>
+  axios.post('/api/names', { name, contestId })
+    .then(resp => resp.data)
+    .catch((err) => {
+      console.log(err);
+    });

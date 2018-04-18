@@ -6,11 +6,6 @@ const {
 } = mongoose;
 
 const contestSchema = new Schema({
-  id: {
-    type: Number,
-    required: true,
-    unique: true,
-  },
   categoryName: {
     type: String,
     required: true,

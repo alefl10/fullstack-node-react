@@ -20,6 +20,7 @@ class App extends React.Component {
     this.fetchContestList = this.fetchContestList.bind(this);
     this.fetchNames = this.fetchNames.bind(this);
     this.lookupName = this.lookupName.bind(this);
+    this.addName = this.addName.bind(this);
   }
 
   componentDidMount() {
@@ -85,6 +86,25 @@ class App extends React.Component {
     return this.state.names[nameId];
   }
 
+  addName(newName, contestId) {
+    api.addName(newName, contestId)
+      .then((data) => {
+        this.setState({
+          contests: {
+            ...this.state.contests,
+            [data.updatedContest._id]: data.updatedContest,
+          },
+          names: {
+            ...this.state.names,
+            [data.newName._id]: data.newName,
+          },
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   pageHeader() {
     if (this.state.currentContestId) {
       return this.currentContest().contestName;
@@ -103,6 +123,7 @@ class App extends React.Component {
           contestListClick={this.fetchContestList}
           fetchNames={this.fetchNames}
           lookupName={this.lookupName}
+          addName={this.addName}
           {...this.currentContest()}
         />
       );
