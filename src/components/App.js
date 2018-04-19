@@ -87,6 +87,9 @@ class App extends React.Component {
   }
 
   addName(newName, contestId) {
+    if (newName === undefined || newName === null || newName === '') {
+      return;
+    }
     api.addName(newName, contestId)
       .then((data) => {
         this.setState({
