@@ -59,6 +59,7 @@
     "popper.js": "^1.14.3",
     "prop-types": "^15.6.1",
     "react": "^16.3.1",
-    "react-dom": "^16.3.1"
+    "react-dom": "^16.3.1",
+    "serve-favicon": "^2.5.0"
   }
 }
