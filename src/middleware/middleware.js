@@ -1,4 +1,6 @@
+import path from 'path';
 import morgan from 'morgan';
+import favicon from 'serve-favicon';
 import bodyParser from 'body-parser';
 
 module.exports = (app) => {
@@ -7,4 +9,5 @@ module.exports = (app) => {
     extended: true,
   }));
   app.use(bodyParser.json());
+  app.use(favicon(path.join(__dirname, '../../dist', 'favicon.ico')));
 };
